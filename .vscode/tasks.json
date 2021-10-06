@@ -1,0 +1,59 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "build_macos_for_debug",
+			"type": "shell",
+			"command": "/usr/bin/c++",
+			"args": [
+				"-g",
+				"-v",
+				"-arch", "x86_64",
+				
+				"resources.cpp",
+				"server/router.cpp",
+				"server/ping.cpp",
+				"server/neuserver.cpp",
+				"main.cpp",
+				"helpers.cpp",
+				"settings.cpp",
+				"auth/authbasic.cpp",
+				"auth/permission.cpp",
+				"lib/boxer/boxer_osx.mm",
+				"lib/easylogging/easylogging++.cc",
+				"api/filesystem/filesystem.cpp",
+				"api/os/os.cpp",
+				"api/computer/computer.cpp",
+				"api/debug/debug.cpp",
+				"api/storage/storage.cpp",
+				"api/app/app.cpp",
+				"api/window/window.cpp",
+				"api/events/events.cpp",
+
+				"-I", ".",
+				"-std=c++17",
+				"-pthread",
+				"-framework", "WebKit",
+				"-framework", "Cocoa",
+				"-DELPP_NO_DEFAULT_LOG_FILE=1",
+				"-DWEBVIEW_COCOA=1",
+				"-DOBJC_OLD_DISPATCH_PROTOTYPES=1",
+				"-O0",   // Optimization Level 0 (No optimization, default)
+				
+				"-o",
+				"${workspaceFolder}/bin/neutralino-mac_x86_64"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "編譯器: /usr/bin/cpp"
+		}
+	]
+}
